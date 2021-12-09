@@ -32,7 +32,7 @@ const team = [
   },
 ];
 
-// SECTION card filler //
+// SECTION card filler initial//
 const containerCards = document.querySelector('.team-container');
 for (let i = 0; i < team.length; i++) {
   const obj = team[i];
@@ -48,3 +48,43 @@ for (let i = 0; i < team.length; i++) {
     </div>`;
   containerCards.innerHTML += templateCard;
 }
+
+// SECTION get element from DOM //
+const inputName = document.getElementById('name');
+const inputRole = document.getElementById('role');
+const inputImage = document.getElementById('image');
+const submitBtn = document.getElementById('addMemberButton');
+
+// SECTION sumbit new co-workers //
+submitBtn.addEventListener('click', function (event) {
+  event.preventDefault();
+  const valueName = inputName.value;
+  const valueRole = inputRole.value;
+  const valueImage = inputImage.value;
+
+  if (valueName.length > 0 && valueRole.length > 0) {
+    const obj = {
+      name: valueName,
+      role: valueRole,
+      image: valueImage 
+    };
+    team.push(obj);
+
+    const containerCards = document.querySelector('.team-container');
+    containerCards.innerHTML = '';
+    for (let i = 0; i < team.length; i++) {
+      const obj = team[i];
+      const templateCard = `
+        <div class='team-card'>
+          <div class='card-image'>
+            <img src="img/${obj.image}"/>
+          </div>
+          <div class="card-text">
+            <h3>${obj.name}</h3>
+            <p>${obj.role}</p>
+          </div>
+        </div>`;
+      containerCards.innerHTML += templateCard;
+    }
+  } else {console.log('Non hai inserito dati');}
+});
