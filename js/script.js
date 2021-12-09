@@ -1,3 +1,4 @@
+// SECTION Object: team //
 const team = [
   {
     name: 'Wayne Barnett',
@@ -30,3 +31,20 @@ const team = [
     image: 'barbara-ramos-graphic-designer.jpg',
   },
 ];
+
+// SECTION card filler //
+const containerCards = document.querySelector('.team-container');
+for (let i = 0; i < team.length; i++) {
+  const obj = team[i];
+  const templateCard = `
+    <div class='team-card'>
+      <div class='card-image'>
+        <img src="img/${obj.image}"/>
+      </div>
+      <div class="card-text">
+        <h3>${obj.name}</h3>
+        <p>${obj.role}</p>
+      </div>
+    </div>`;
+  containerCards.innerHTML += templateCard;
+}
